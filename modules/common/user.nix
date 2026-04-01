@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
   users.users.zhenren = {
     isNormalUser = true;
     description = "Zhenren";

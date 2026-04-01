@@ -4,7 +4,7 @@
       main = {
         type = "disk";
         # WICHTIG: Ersetze dies durch die echte ID der Laptop-SSD!
-        device = "/dev/disk/by-id/nvme-DEINE_LAPTOP_SSD_ID_HIER";
+        device = "/dev/disk/by-id/nvme-SAMSUNG_MZVLW256HEHP-000L7_S35ENX1J617212";
         content = {
           type = "gpt";
           partitions = {
@@ -31,10 +31,6 @@
                   subvolumes = {
                     "/root" = {
                       mountpoint = "/";
-                      mountOptions = [ "compress=zstd" "noatime" ];
-                    };
-                    "/home" = {
-                      mountpoint = "/home";
                       mountOptions = [ "compress=zstd" "noatime" ];
                     };
                     "/nix" = {

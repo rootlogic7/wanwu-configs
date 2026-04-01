@@ -1,0 +1,8 @@
+keys:
+  - &xun_host age1mkmnhfjvmck66llhu6drc5dv3rf6g7d2a5jt2jl0w4ehkey5wd4sqmyh5w
+
+creation_rules:
+  - path_regex: secrets/.*\.yaml$
+    key_groups:
+    - age:
+      - *xun_host

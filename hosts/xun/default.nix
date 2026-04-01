@@ -2,9 +2,9 @@
   imports = [
     ../../modules/common
     ../../modules/profiles/laptop.nix
-    ../../modules/desktops/niri.nix
+    ../../modules/desktop/niri.nix
     ./disko.nix
-    # ./hardware-configuration.nix
+    ./hardware-configuration.nix
   ];
 
   # ===========================================================================
@@ -73,7 +73,7 @@
 
   # WICHTIG FÜR BTRFS HIBERNATION:
   # Der resume_offset muss nach der Erstinstallation ermittelt und hier eingetragen werden!
-  # boot.kernelParams = [ "resume_offset=HIER_ZAHL_EINTRAGEN" ];
+  boot.kernelParams = [ "resume_offset=1099815" ];
 
   system.stateVersion = "26.05";
 }

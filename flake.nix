@@ -48,9 +48,9 @@
           impermanence.nixosModules.impermanence
           inputs.sops-nix.nixosModules.sops
 
-          ./modules/hosts/xun/disko.nix
-          # ./hosts/xun/hardware-configuration.nix
-          ./modules/hosts/xun/default.nix
+          ./hosts/xun/disko.nix
+          ./hosts/xun/hardware-configuration.nix
+          ./hosts/xun/default.nix
         ];
       };
     };
