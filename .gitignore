@@ -1,0 +1,17 @@
+# Nix-spezifische Build-Symlinks
+result
+result-*
+
+# Temporäre Direnv/Devenv Ordner
+.direnv/
+.devenv/
+
+# SOPS / Verschlüsselung (Falls du mal aus Versehen Schlüssel im Repo ablegst)
+keys.txt
+*.age
+*.key
+
+# Swap/Backup Dateien von Editoren
+*~
+*.swp
+*.bak
