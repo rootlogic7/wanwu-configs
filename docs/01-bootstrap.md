@@ -68,7 +68,7 @@
 
    Hinweis: Da wir disko nutzen, ignoriert NixOS später automatisch eventuelle fileSystems Einträge
    in dieser Datei, wir müssen sie also nicht händisch löschen.
-
+ 
 
 ## 5. Festplatten formatieren & mounten (DISKO)
 
@@ -105,16 +105,16 @@
     nix run nixpkgs#ssh-to-age -- -i /mnt/persist/etc/ssh/ssh_host_ed25519_key.pub
    ```
     
-  => Kopiere dir den Output (beginnt mit age1...). Das ist der öffentliche Schlüssel des Laptops.
+  => Kopiere dir den Output (beginnt mit age1...) und trage ihn in die .sops.yaml im Repo ein.
 
-   4. Verschlüssele dein User-Passwort:
-   Wechsle auf einem anderen Rechner (oder in einem zweiten Terminalfenster) in dein Repo und
-   passe die .sops.yaml an, indem du den kopierten age1... Key bei keys: und creation_rules: einträgst.
-
-   5. Erstelle einen Passwort-Hash (z.B. mit mkpasswd -m sha-512 "DeinPasswort") und
-   füge ihn über das SOPS-CLI in die secrets/secrets.yaml ein:
+   4. Generiere einen Hash für dein User-Passwort:
    ```bash
-    sops secrets/secrets.yaml
+   nix run nixpkgs#mkpasswd -- -m sha-512
+   ```
+
+   6. Speichere das Passwort mit SOPS (mkdir -p secrets):
+   ```bash
+    EDITOR=nano nix run nixpkgs#sops -- secrets/secrets.yaml
    ```
 
    6. Inhalt der yaml:
@@ -149,6 +149,14 @@
 
 ## 8. Abschluss
 
+   - Da /tmp beim Reboot gelöscht wird, müssen wir das Repo in den persistenten Home-Ordner verschieben,
+   damit du nach dem Start direkt weiterarbeiten kannst:
+   ```bash
+    mkdir -p /mnt/persist/home/zhenren
+    cp -a /tmp/wanwu-configs /mnt/persist/home/zhenren/
+    nixos-enter --root /mnt -c "chown -R zhenren:users /persist/home/zhenren/wanwu-configs"
+   ```
+
    - Wenn die Installation fehlerfrei durchgelaufen ist:
    ```bash
     reboot
@@ -166,9 +174,9 @@
 
    1. Logge dich mit dem temporären Passwort in dein neues System ein.
     
-   2. Finde den physischen Startpunkt (Offset) des Swapfiles heraus:
+   2. Finde den `resume offset` des Swapfiles heraus:
    ```bash
-    sudo btrfs inspect-internal map-swapfile -o /swap/swapfile
+    sudo btrfs inspect-internal map-swapfile /swap/swapfile
    ```
 
    3. Das Terminal gibt dir eine Zahl aus (z.B. 5342938). Kopiere diese Zahl.
