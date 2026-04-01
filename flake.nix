@@ -15,9 +15,13 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, disko, impermanence, sops-nix, ... }@inputs: {
+  outputs = { self, nixpkgs, disko, impermanence, sops-nix, home-manager, ... }@inputs: {
     
     nixosConfigurations = {
       # ---------------------------------------------------------
@@ -30,6 +34,7 @@
           disko.nixosModules.disko
           impermanence.nixosModules.impermanence
           inputs.sops-nix.nixosModules.sops
+          home-manager.nixosModules.home-manager
 
           ./hosts/qian/disko.nix
           # ./hosts/qian/hardware-configuration.nix
@@ -47,6 +52,7 @@
           disko.nixosModules.disko
           impermanence.nixosModules.impermanence
           inputs.sops-nix.nixosModules.sops
+          home-manager.nixosModules.home-manager
 
           ./hosts/xun/disko.nix
           ./hosts/xun/hardware-configuration.nix
