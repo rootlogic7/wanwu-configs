@@ -7,12 +7,14 @@
     ./hardware-configuration.nix
   ];
 
+
   # ===========================================================================
   # HARDWARE-SPEZIFISCHE MANIFESTATION (XUN)
   # ===========================================================================
   networking.hostName = "xun";
   
   boot.supportedFilesystems = [ "btrfs" ];
+
 
   # ===========================================================================
   # NIX DAEMON OPTIMIERUNG (Für Low-RAM / Ältere CPUs)
@@ -28,6 +30,7 @@
   # Verhindert, dass /tmp im Arbeitsspeicher (tmpfs) gemountet wird, 
   # was bei großen Builds unweigerlich zu OOM-Crashes führt.
   boot.tmp.useTmpfs = false;
+
 
   # ===========================================================================
   # BTRFS ROLLBACK SCRIPT (Erase your Darlings)
@@ -60,6 +63,7 @@
     '';
   };
 
+
   # ===========================================================================
   # SWAP & HIBERNATION (8 GB RAM)
   # ===========================================================================
@@ -74,6 +78,19 @@
   # WICHTIG FÜR BTRFS HIBERNATION:
   # Der resume_offset muss nach der Erstinstallation ermittelt und hier eingetragen werden!
   boot.kernelParams = [ "resume_offset=1099815" ];
+
+
+  # ===========================================================================
+  # HOME MANAGER KONFIGURATION
+  # ===========================================================================
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = { inherit inputs; };
+    
+    # Hier weisen wir Home Manager an, deine Datei zu laden!
+    users.zhenren = import ../../modules/home/zhenren.nix;
+  };
 
   system.stateVersion = "26.05";
 }
