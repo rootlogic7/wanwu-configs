@@ -1,4 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, ... }: 
+  # Der absolute Bleeding-Edge Kernel für maximale Nvidia/Wayland Performance
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   # Performance-Tweaks für Desktop-Betrieb
   powerManagement.cpuFreqGovernor = "performance";
 
