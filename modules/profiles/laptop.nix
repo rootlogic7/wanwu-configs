@@ -1,4 +1,9 @@
 { pkgs, ... }: {
+  # ===========================================================================
+  # KERNEL (Bleeding Edge für Btrfs & Wayland)
+  # ===========================================================================
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   # Energie-Management (TLP ist der Standard für Laptops)
   services.tlp = {
     enable = true;
