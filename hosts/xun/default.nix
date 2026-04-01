@@ -1,4 +1,4 @@
-{ ... }: {
+{ inputs, ... }: {
   imports = [
     ../../modules/common
     ../../modules/profiles/laptop.nix
