@@ -17,6 +17,11 @@
     sudo su
    ```
 
+   4. Tastaturlayout anpassen:
+   ```bash
+    loadkeys de-latin1
+   ```
+
 
  ## 2. Das Repository vorbereiten
 
