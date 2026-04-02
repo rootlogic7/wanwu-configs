@@ -3,28 +3,58 @@ let
   # Hier laden wir deine neue Theme-Datei
   theme = import ./theme.nix;
 in {
-  
+  # ===========================================================================
+  # NUSHELL CONFIG
+  # ===========================================================================
+  programs.nushell = {
+    enable = true;
+    # Hier kannst du später Aliase und spezifische Nushell-Umgebungsvariablen setzen
+  };
+
   # ===========================================================================
   # GHOSTTY CONFIG
   # ===========================================================================
-  xdg.configFile."ghostty/config".text = ''
-    command = nu
+  programs.ghostty = {
+    enable = true;
+    settings = {
+      command = "nu";
+      font-family = theme.fonts.terminal;
+      font-size = theme.fonts.size;
+      window-padding-x = 10;
+      window-padding-y = 10;
+      
+      background = theme.colors.bg;
+      foreground = theme.colors.fg;
+      cursor-color = theme.colors.cursor;
+      
+      palette = [
+        "0=${theme.colors.color0}"
+        "1=${theme.colors.color1}"
+        "2=${theme.colors.color2}"
+      ];
+    };
+  }; 
+  # ===========================================================================
+  # GHOSTTY CONFIG
+  # ===========================================================================
+  # xdg.configFile."ghostty/config".text = ''
+  #  command = nu
     
-    //Schriften aus dem Theme laden
-    font-family = "${theme.fonts.terminal}"
-    font-size = ${theme.fonts.size}
-    window-padding-x = 10
-    window-padding-y = 10
+  #  //Schriften aus dem Theme laden
+  #  font-family = "${theme.fonts.terminal}"
+  #  font-size = ${theme.fonts.size}
+  #  window-padding-x = 10
+  #  window-padding-y = 10
     
-    //Farben aus dem Theme laden
-    background = ${theme.colors.bg}
-    foreground = ${theme.colors.fg}
-    cursor-color = ${theme.colors.cursor}
+  #  //Farben aus dem Theme laden
+  #  background = ${theme.colors.bg}
+  #  foreground = ${theme.colors.fg}
+  #  cursor-color = ${theme.colors.cursor}
     
-    palette = 0=${theme.colors.color0}
-    palette = 1=${theme.colors.color1}
-    palette = 2=${theme.colors.color2}
-  '';
+  #  palette = 0=${theme.colors.color0}
+  #  palette = 1=${theme.colors.color1}
+  #  palette = 2=${theme.colors.color2}
+  #'';
 
   # ===========================================================================
   # NIRI CONFIG
@@ -49,6 +79,11 @@ in {
         }
         Mod+B {
             spawn "qutebrowser"
+        }
+        
+        // App-Launcher
+        Mod+D {
+            spawn "fuzzel"
         }
 
         // Fenster-Management

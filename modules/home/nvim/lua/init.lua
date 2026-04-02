@@ -28,6 +28,9 @@ lspconfig.vtsls.setup {
       suggest = {
         completeFunctionCalls = true,
       },
+      tsserver = { 
+        maxTsServerMemory = 8192 
+      },
     },
   }
 }

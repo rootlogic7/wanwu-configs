@@ -20,14 +20,17 @@
     # Nushell wird hier nur als Paket installiert, NICHT als System-Shell gesetzt!
     nushell
     
+    # Moderne Rust-basierte CLI Tools
+    bat eza fd ripgrep zoxide
+
+    # App-Launcher
+    fuzzel
+
     # Webbrowser
-    qutebrowser   
-    
+    qutebrowser  
+
     # Niri-spezifische Abhängigkeiten
     xwayland-satellite 
-    
-    # Moderne Rust-basierte CLI Tools
-    bat eza fd ripgrep zoxide 
   ];
 
   fonts.packages = with pkgs; [
