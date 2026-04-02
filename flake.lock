@@ -82,6 +82,21 @@
         "type": "github"
       }
     },
+    "nixCats": {
+      "locked": {
+        "lastModified": 1774835836,
+        "narHash": "sha256-6ok7iv/9R82vl6MYe3Lwyyb6S5bmW2PxEZtmjzlqyPs=",
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "rev": "ebb9f279a55ca60ff4e37e4accf6518dc627aa8d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1774709303,
@@ -103,6 +118,7 @@
         "disko": "disko",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
+        "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
         "sops-nix": "sops-nix"
       }

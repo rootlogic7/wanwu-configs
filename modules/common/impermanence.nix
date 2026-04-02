@@ -30,6 +30,8 @@
         ".local/share/direnv"
         ".local/share/zoxide"
         # Browser und andere Configs können hier später noch rein
+        ".config/qutebrowser"
+        ".local/share/qutebrowser"
       ];
       files = [
         ".config/nushell/history.txt"

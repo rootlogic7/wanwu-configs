@@ -19,6 +19,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixCats = {
+      url = "github:BirdeeHub/nixCats-nvim";
+    };
   };
 
   outputs = { self, nixpkgs, disko, impermanence, sops-nix, home-manager, ... }@inputs: {

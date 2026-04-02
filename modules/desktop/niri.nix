@@ -30,6 +30,10 @@
     bat eza fd ripgrep zoxide 
   ];
 
+  fonts.packages = with pkgs; [
+    nerd-fonts.fira-code # Installiert FiraCode mit allen Nerd-Font Icons
+  ];
+
   # ===========================================================================
   # 3. WAYLAND BASIS-EINSTELLUNGEN
   # ===========================================================================

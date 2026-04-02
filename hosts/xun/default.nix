@@ -89,7 +89,12 @@
     extraSpecialArgs = { inherit inputs; };
     
     # Hier weisen wir Home Manager an, deine Datei zu laden!
-    users.zhenren = import ../../modules/home/zhenren.nix;
+    users.zhenren = {
+      imports = [
+        ../../modules/home/zhenren.nix
+        ../../modules/home/nvim/default.nix
+      ];
+    };
   };
 
   system.stateVersion = "26.05";
