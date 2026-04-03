@@ -19,16 +19,13 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixCats = {
-      url = "github:BirdeeHub/nixCats-nvim";
-    };
   };
 
   outputs = { self, nixpkgs, disko, impermanence, sops-nix, home-manager, ... }@inputs: {
     
     nixosConfigurations = {
       # ---------------------------------------------------------
-      # HOST 1: WORKSTATION (ehemals quasar nun qian)
+      # HOST 1: WORKSTATION
       # ---------------------------------------------------------
       qian = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

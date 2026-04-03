@@ -2,7 +2,7 @@
   imports = [
     ../../modules/common
     ../../modules/profiles/laptop.nix
-    ../../modules/desktop/niri.nix
+
     ./disko.nix
     ./hardware-configuration.nix
   ];
@@ -20,9 +20,7 @@
   # NIX DAEMON OPTIMIERUNG (Für Low-RAM / Ältere CPUs)
   # ===========================================================================
   nix.settings = {
-    # Beschränkt parallele Build-Jobs auf 2
     max-jobs = 2;
-    # Jeder Build-Job darf maximal 2 CPU-Kerne nutzen
     cores = 2;
   };
 
@@ -92,7 +90,7 @@
     users.zhenren = {
       imports = [
         ../../modules/home/zhenren.nix
-        ../../modules/home/nvim/default.nix
+        #../../modules/home/nvim/default.nix
       ];
     };
   };
