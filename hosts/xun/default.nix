@@ -2,6 +2,7 @@
   imports = [
     ../../modules/common
     ../../modules/profiles/laptop.nix
+    ../../modules/desktop/niri.nix
 
     ./disko.nix
     ./hardware-configuration.nix
@@ -86,11 +87,9 @@
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs; };
     
-    # Hier weisen wir Home Manager an, deine Datei zu laden!
     users.zhenren = {
       imports = [
         ../../modules/home/zhenren.nix
-        #../../modules/home/nvim/default.nix
       ];
     };
   };
