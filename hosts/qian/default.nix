@@ -6,8 +6,9 @@
     ./disko.nix
     # ./hardware-configuration.nix
   ];
+  mainUser = "haku";
 
-  networking.hostName = "qian";
+  networking.hostName = "workstation";
   networking.hostId = "1234abcd";
   
   # Spezifisch für Qians ZFS-Layout
