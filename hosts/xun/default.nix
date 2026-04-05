@@ -7,7 +7,8 @@
     ./disko.nix
     ./hardware-configuration.nix
   ];
-
+  # Options
+  mainUser = "zhenren";
 
   # ===========================================================================
   # HARDWARE-SPEZIFISCHE MANIFESTATION (XUN)
