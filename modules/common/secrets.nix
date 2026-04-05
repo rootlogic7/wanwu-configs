@@ -8,7 +8,7 @@
   sops.age.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
 
   # Das Passwort für Zhenren deklarieren
-  sops.secrets."users/zhenren/password" = {
+  sops.secrets."users/${config.mainUser}/password" = {
     neededForUsers = true;
   };
 }
