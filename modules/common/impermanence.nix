@@ -22,6 +22,7 @@
     users.zhenren = {
       directories = [
         "wanwu-configs"  # Dein neues Repo muss überleben!
+        "Dev"
         "Downloads"
         "Documents"
         "Pictures"

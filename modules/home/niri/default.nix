@@ -12,9 +12,9 @@ in {
 	        layout "de"
 	    }
 	}
-        warp-mouse-to-focus mode="center-xy-always"
+        //warp-mouse-to-focus mode="center-xy-always"
 	focus-follows-mouse
-	workspace-auto-back-and-forth
+	//workspace-auto-back-and-forth
     }
     output "eDP-1" {
         mode "1366x768"
