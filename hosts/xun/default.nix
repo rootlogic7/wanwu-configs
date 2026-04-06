@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, config, ... }: {
   imports = [
     ../../modules/common
     ../../modules/profiles/laptop.nix
@@ -88,24 +88,22 @@
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs; };
     
-    users.zhenren = {
+    users.${config.mainUser} = {
       imports = [
         ../../modules/home/zhenren.nix
       ];
-    };
-  };
 
-  home-manager.users.${config.mainUser} = {
-    custom.niri = {
-      # Aktiviert Touchpad-Settings und die speziellen Keybinds
-      hasTouchpad = true; 
+      custom.niri = {
+        # Aktiviert Touchpad-Settings und die speziellen Keybinds
+        hasTouchpad = true; 
       
-      monitorConfig = ''
-        output "eDP-1" {
-            mode "1366x768"
-            scale 0.8
-        }
-      '';
+        monitorConfig = ''
+          output "eDP-1" {
+              mode "1366x768"
+              scale 0.8
+          }
+        '';
+      };
     };
   };
 
