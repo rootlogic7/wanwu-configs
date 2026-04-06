@@ -4,6 +4,9 @@
   # ===========================================================================
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # Bioas firmware updates
+  services.fwupd.enable = true;
+
   # Energie-Management (TLP ist der Standard für Laptops)
   services.tlp = {
     enable = true;
@@ -13,6 +16,27 @@
       CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
     };
   };
+
+  services.thermald.enable = true;
+  services.upower.enable = true;
+
+  networking.networkmanager.wifi.backend = "iwd";
+
+  # ===========================================================================
+  # BLUETOOTH
+  # ===========================================================================
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true; # Standardmäßig beim Hochfahren aktivieren
+    settings = {
+      General = {
+        Experimental = true; # Zeigt z.B. den Akkustand deiner Kopfhörer an
+      };
+    };
+  };
+  
+  # Blueman (GUI Manager) für einfaches Koppeln in Wayland/Niri
+  services.blueman.enable = true;
 
   # Touchpad-Unterstützung (Libinput)
   services.libinput.enable = true;

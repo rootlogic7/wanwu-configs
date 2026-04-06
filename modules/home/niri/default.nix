@@ -63,8 +63,13 @@ in {
         Mod+TouchpadScrollUp cooldown-ms=250 { focus-workspace-up; }
 
         // Audio Control
-        Mod+Shift+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
-        Mod+Shift+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
+        //Mod+Shift+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
+        //Mod+Shift+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
+        // --- ThinkPad Audio Tasten (F1, F2, F3) ---
+        XF86AudioMute        { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+        XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+        // Das "-l 1.0" bei RaiseVolume ist wichtig, damit du nicht versehentlich über 100% gehst und die Lautsprecher übersteuerst!
+        XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "-l" "1.0" "@DEFAULT_AUDIO_SINK@" "5%+"; }
     }
 
     layout {
