@@ -25,9 +25,9 @@
     
     nixosConfigurations = {
       # ---------------------------------------------------------
-      # HOST 1: WORKSTATION
+      # HOST 1: workstation
       # ---------------------------------------------------------
-      qian = nixpkgs.lib.nixosSystem {
+      workstation = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
@@ -36,16 +36,16 @@
           inputs.sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
 
-          ./hosts/qian/disko.nix
-          # ./hosts/qian/hardware-configuration.nix
-          ./hosts/qian/default.nix
+          ./hosts/workstation/disko.nix
+          # ./hosts/workstation/hardware-configuration.nix
+          ./hosts/workstation/default.nix
         ];
       };
 
       # ---------------------------------------------------------
-      # HOST 2: LAPTOP (ehemals nova nun xun)
+      # HOST 2: thinkpad
       # ---------------------------------------------------------
-      xun = nixpkgs.lib.nixosSystem {
+      thinkpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
@@ -54,9 +54,9 @@
           inputs.sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
 
-          ./hosts/xun/disko.nix
-          ./hosts/xun/hardware-configuration.nix
-          ./hosts/xun/default.nix
+          ./hosts/thinkpad/disko.nix
+          ./hosts/thinkpad/hardware-configuration.nix
+          ./hosts/thinkpad/default.nix
         ];
       };
     };

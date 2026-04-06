@@ -8,12 +8,12 @@
     ./hardware-configuration.nix
   ];
   # Options
-  mainUser = "zhenren";
+  mainUser = "haku";
 
   # ===========================================================================
   # HARDWARE-SPEZIFISCHE MANIFESTATION (XUN)
   # ===========================================================================
-  networking.hostName = "xun";
+  networking.hostName = "thinkpad";
   
   boot.supportedFilesystems = [ "btrfs" ];
 
@@ -90,7 +90,7 @@
     
     users.${config.mainUser} = {
       imports = [
-        ../../modules/home/zhenren.nix
+        ../../modules/home/haku.nix
       ];
 
       custom.niri = {
