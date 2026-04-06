@@ -75,7 +75,7 @@
       # -----------------------------------------------------------------------
       media = {
         type = "disk";
-        device = "/dev/disk/by-id/ata-WDC_WD40_DEINE_4TB_HDD_ID_HIER";
+        device = "/dev/disk/by-id/ata-WDC_WD40EZRZ-22GXCB0_WD-WCC7K5LD8Y9V";
         content = {
           type = "gpt";
           partitions = {
