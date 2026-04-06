@@ -6,7 +6,7 @@
       # -----------------------------------------------------------------------
       system = {
         type = "disk";
-        device = "/dev/disk/by-id/nvme-DEINE_SYSTEM_SSD_ID_HIER";
+        device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_500GB_S5H7NS1N529304A";
         content = {
           type = "gpt";
           partitions = {
@@ -43,7 +43,7 @@
       # -----------------------------------------------------------------------
       games = {
         type = "disk";
-        device = "/dev/disk/by-id/nvme-DEINE_GAMES_SSD_ID_HIER";
+        device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_500GB_S5H7NS1N533652F";
         content = {
           type = "gpt";
           partitions = {
