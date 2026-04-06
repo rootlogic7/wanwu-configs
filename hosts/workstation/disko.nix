@@ -100,7 +100,7 @@
       # -----------------------------------------------------------------------
       backup = {
         type = "disk";
-        device = "/dev/disk/by-id/ata-TOSHIBA_DEINE_2TB_HDD_ID_HIER";
+        device = "/dev/disk/by-id/ata-TOSHIBA_DT01ACA200_94JKP2VHS";
         content = {
           type = "gpt";
           partitions = {
