@@ -14,37 +14,39 @@ in {
     # Option für Touchpad-Gesten/Binds
     hasTouchpad = lib.mkEnableOption "Touchpad-spezifische Konfigurationen und Keybinds";
   };
+
   # ===========================================================================
   # NIRI CONFIG (Home Manager)
   # ===========================================================================
   config = {
     xdg.configFile."niri/config.kdl".text = ''
+		// ==========================================
+        // HOST-SPEZIFISCHE MONITORE
+        // ==========================================
+        ${cfg.monitorConfig}
+
+		// ==========================================
+        // INPUT & TOUCHPAD
+        // ==========================================
         input {
         	keyboard {
    	    		xkb {
 	        		layout "de"
 	    		}
 			}
+
+			// Wird nur eingefügt, wenn 'hasTouchpad = true' ist
+            ${lib.optionalString cfg.hasTouchpad ''
+            touchpad {
+                tap
+                natural-scroll
+            }
+            ''}
+
         	//warp-mouse-to-focus mode="center-xy-always"
 			focus-follows-mouse
 			//workspace-auto-back-and-forth
     	}
-    	output "eDP-1" {
-        	mode "1366x768"
-        	scale 0.8
-        	position x=0 y=0
-        	//variable-refresh-rate
-        	focus-at-startup
-        	backdrop-color "${theme.colors.bg}"
-
-        	hot-corners {
-            	//top-left
-            	top-right
-            	//bottom-left
-            	//bottom-right
-        	}
-    	}
-
     	binds {
         	// Programme starten
         	Mod+Return { spawn "ghostty"; }
@@ -72,13 +74,16 @@ in {
         	Mod+Up { focus-workspace-up; }
         	Mod+K { focus-workspace-up; }
 
+			${lib.optionalString cfg.hasTouchpad ''
         	Mod+TouchpadScrollDown cooldown-ms=250 { focus-workspace-down; }
         	Mod+TouchpadScrollUp cooldown-ms=250 { focus-workspace-up; }
 
         	// Audio Control
         	//Mod+Shift+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
         	//Mod+Shift+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
-        	// --- ThinkPad Audio Tasten (F1, F2, F3) ---
+			''}
+
+			// --- ThinkPad Audio Tasten (F1, F2, F3) ---
         	XF86AudioMute        { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
         	XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
         	// Das "-l 1.0" bei RaiseVolume ist wichtig, damit du nicht versehentlich über 100% gehst und die Lautsprecher übersteuerst!
