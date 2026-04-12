@@ -24,6 +24,14 @@
   nix.settings = {
     max-jobs = 2;
     cores = 2;
+    auto-optimise-store = true;
+  };
+
+  # Automatic garbage collector
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
   };
 
   # Extrem wichtig für Maschinen mit <= 8GB RAM!

@@ -106,7 +106,6 @@ in {
             	corner-radius 4
             	place-within-column
             	hide-when-single-tab
-            	active-gradient from="${theme.colors.accent_secondary}" to="${theme.colors.accent_tertiary}" angle=45 relative-to="workspace-view"
         	}
         	preset-column-widths {
             	proportion 0.33333
@@ -126,16 +125,10 @@ in {
         	border {
             	width 2
 
-            	active-gradient from="${theme.colors.accent_primary}" to="${theme.colors.accent_tertiary}" angle=45 relative-to="workspace-view"
-            	inactive-gradient from="${theme.colors.accent_secondary}" to="${theme.colors.inactive_border}" angle=45 relative-to="workspace-view"
-            	urgent-color "${theme.colors.bright_blue}"
         	}
         	focus-ring {
             	width 2
             
-            	active-color "${theme.colors.accent_primary}"
-            	inactive-color "${theme.colors.inactive_border}"
-            	urgent-color "${theme.colors.bright_blue}"
         	}
         
         	shadow {
@@ -144,7 +137,6 @@ in {
 
         	insert-hint {
             	on
-            	gradient from="${theme.colors.accent_tertiary}" to="${theme.colors.inactive_border}" angle=45 relative-to="workspace-view"
         	}
 
         	struts {
@@ -153,7 +145,6 @@ in {
             	top 32
             	bottom 16
         	}
-        	background-color "${theme.colors.bg}"
     	}
     	prefer-no-csd
     	screenshot-path "~/Pictures/Screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png"
@@ -164,11 +155,11 @@ in {
 
         overview {
             zoom 0.45
-            backdrop-color "${theme.colors.inactive_border}"
             workspace-shadow {
             	on
             }
         }
+        include "~/.config/niri-quickshell/niri/colors.kdl"
     '';
   };
 }
