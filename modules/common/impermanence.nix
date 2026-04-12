@@ -28,6 +28,7 @@
         ".local/share/keyrings"
         ".local/share/direnv"
         ".local/share/zoxide"
+        ".config/niri-quickshell"
         ".config/qutebrowser"
         ".local/share/qutebrowser"
       ];
