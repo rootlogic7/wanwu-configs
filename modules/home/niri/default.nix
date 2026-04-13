@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }: 
 let
-  theme = import ../theme.nix;
+  # theme = import ../theme.nix;
   cfg = config.custom.niri;
 in {
   options.custom.niri = {
@@ -20,33 +20,33 @@ in {
   # ===========================================================================
   config = {
     xdg.configFile."niri/config.kdl".text = ''
-		// ==========================================
+	// ==========================================
         // HOST-SPEZIFISCHE MONITORE
         // ==========================================
         ${cfg.monitorConfig}
 
-		// ==========================================
+	// ==========================================
         // INPUT & TOUCHPAD
         // ==========================================
         input {
-        	keyboard {
-   	    		xkb {
-	        		layout "de"
-	    		}
-			}
+            keyboard {
+   	        xkb {
+	            layout "de"
+	    	}
+	    }
 
-			// Wird nur eingefügt, wenn 'hasTouchpad = true' ist
+	    // Wird nur eingefügt, wenn 'hasTouchpad = true' ist
             ${lib.optionalString cfg.hasTouchpad ''
             touchpad {
                 tap
                 natural-scroll
             }
             ''}
-
-        	//warp-mouse-to-focus mode="center-xy-always"
-			focus-follows-mouse
-			//workspace-auto-back-and-forth
+            //warp-mouse-to-focus mode="center-xy-always"
+	    focus-follows-mouse
+	    //workspace-auto-back-and-forth
     	}
+        spawn-at-startup "bash" "-c" "sleep 2; exec niri-quickshell"
     	binds {
         	// Programme starten
         	Mod+Return { spawn "ghostty"; }
@@ -159,7 +159,7 @@ in {
             	on
             }
         }
-        include "~/.config/niri-quickshell/niri/colors.kdl"
+        include "/home/${config.home.username}/.config/niri-quickshell/niri/colors.kdl"
     '';
   };
 }

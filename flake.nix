@@ -19,6 +19,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    niri-quickshell.url = "path:/home/haku/Dev/niri-quickshell";
   };
 
   outputs = { self, nixpkgs, disko, impermanence, sops-nix, home-manager, ... }@inputs: {
