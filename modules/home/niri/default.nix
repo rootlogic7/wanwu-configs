@@ -42,7 +42,7 @@ in {
                 natural-scroll
             }
             ''}
-            //warp-mouse-to-focus mode="center-xy-always"
+            warp-mouse-to-focus mode="center-xy-always"
 	    focus-follows-mouse
 	    //workspace-auto-back-and-forth
     	}
@@ -92,60 +92,60 @@ in {
 
     	layout {
         	gaps 16
-
         	center-focused-column "on-overflow"
-
         	empty-workspace-above-first
-
         	default-column-display "normal"
+
         	tab-indicator {
-            	width 8
-            	gap 8
-            	length total-proportion=1.0
-            	position "top"
-            	corner-radius 4
-            	place-within-column
-            	hide-when-single-tab
+            		width 8
+            		gap 8
+            		length total-proportion=1.0
+            		position "top"
+            		corner-radius 4
+            		place-within-column
+            		hide-when-single-tab
         	}
+
         	preset-column-widths {
-            	proportion 0.33333
-            	proportion 0.5
-            	proportion 0.66667
-            	fixed 1280
+            		proportion 0.33333
+            		proportion 0.5
+            		proportion 0.66667
+            		fixed 1280
         	}
+
         	default-column-width {}
 
         	preset-window-heights {
-            	proportion 0.33333
-            	proportion 0.5
-            	proportion 0.66667
-            	fixed 720
+            		proportion 0.33333
+            		proportion 0.5
+            		proportion 0.66667
+            		fixed 720
         	}
 
         	border {
-            	width 2
-
+            		width 2
         	}
+
         	focus-ring {
-            	width 2
-            
+            		width 2
         	}
         
         	shadow {
-            	on
+            		on
         	}
 
         	insert-hint {
-            	on
+            		on
         	}
 
         	struts {
-            	left 8
-            	right 8
-            	top 32
-            	bottom 16
+            		left 5
+            		right 5
+            		top 5
+            		bottom 5
         	}
     	}
+
     	prefer-no-csd
     	screenshot-path "~/Pictures/Screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png"
     	cursor {

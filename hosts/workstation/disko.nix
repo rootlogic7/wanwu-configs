@@ -2,7 +2,7 @@
   disko.devices = {
     disk = {
       # -----------------------------------------------------------------------
-      # 1. SSD: SYSTEM RAKETE (NVMe 0) - ZFS
+      # 1. SSD: SYSTEM (NVMe 0) - ZFS
       # -----------------------------------------------------------------------
       system = {
         type = "disk";
@@ -25,9 +25,9 @@
               content = {
                 type = "luks";
                 name = "cryptroot";
-                # Bei der Installation diese Datei vorher anlegen: echo -n "passwort" > /tmp/secret.key
+                # Installation: echo -n "passwort" > /tmp/secret.key
                 passwordFile = "/tmp/secret.key";
-                settings.allowDiscards = true; # Wichtig für NVMe TRIM
+                settings.allowDiscards = true; # NVMe TRIM
                 content = {
                   type = "zfs";
                   pool = "rpool";
@@ -56,7 +56,7 @@
                 settings.allowDiscards = true;
                 content = {
                   type = "btrfs";
-                  extraArgs = [ "-f" ]; # Erzwingt Formatierung
+                  extraArgs = [ "-f" ];
                   subvolumes = {
                     "/root" = {
                       mountpoint = "/storage/games";
@@ -71,7 +71,7 @@
       };
 
       # -----------------------------------------------------------------------
-      # 3. HDD: DATENGRAB / ARCHIV (4TB WD) - ZFS
+      # 3. HDD: ARCHIV (4TB WD) - ZFS
       # -----------------------------------------------------------------------
       media = {
         type = "disk";
@@ -96,7 +96,7 @@
       };
 
       # -----------------------------------------------------------------------
-      # 4. HDD: LOKALES BACKUP VAULT (2TB TOSHIBA) - BTRFS
+      # 4. HDD: LOCAL BACKUP VAULT (2TB TOSHIBA) - BTRFS
       # -----------------------------------------------------------------------
       backup = {
         type = "disk";
@@ -140,7 +140,7 @@
             type = "zfs_fs";
             mountpoint = "/";
             options.mountpoint = "legacy";
-            # Erstellt den Rollback-Snapshot für Erase Your Darlings direkt bei der Installation
+            # Create Rollback-Snapshot for EYD at installation
             postCreateHook = "zfs snapshot rpool/root@blank";
           };
           "nix" = {
