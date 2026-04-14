@@ -7,25 +7,22 @@
     ./disko.nix
     ./hardware-configuration.nix
   ];
-  # Options
-  mainUser = "haku";
 
-  # ===========================================================================
-  # HARDWARE-SPEZIFISCHE MANIFESTATION (XUN)
-  # ===========================================================================
+  # General
+  mainUser = "haku";
   networking.hostName = "thinkpad";
-  
+
+  # Filesystems
   boot.supportedFilesystems = [ "btrfs" ];
 
-
-  # ===========================================================================
-  # NIX DAEMON OPTIMIERUNG (Für Low-RAM / Ältere CPUs)
-  # ===========================================================================
+  # laptop optimisation
   nix.settings = {
     max-jobs = 2;
     cores = 2;
     auto-optimise-store = true;
   };
+
+  boot.tmp.useTmpfs = false;
 
   # Automatic garbage collector
   nix.gc = {
@@ -33,12 +30,6 @@
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
-
-  # Extrem wichtig für Maschinen mit <= 8GB RAM!
-  # Verhindert, dass /tmp im Arbeitsspeicher (tmpfs) gemountet wird, 
-  # was bei großen Builds unweigerlich zu OOM-Crashes führt.
-  boot.tmp.useTmpfs = false;
-
 
   # ===========================================================================
   # BTRFS ROLLBACK SCRIPT (Erase your Darlings)
@@ -87,10 +78,7 @@
   # Der resume_offset muss nach der Erstinstallation ermittelt und hier eingetragen werden!
   boot.kernelParams = [ "resume_offset=1099815" ];
 
-
-  # ===========================================================================
-  # HOME MANAGER KONFIGURATION
-  # ===========================================================================
+  # Home Manager
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
