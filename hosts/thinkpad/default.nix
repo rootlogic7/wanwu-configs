@@ -1,107 +1,51 @@
 { inputs, config, ... }: {
   imports = [
-    ../../modules/common
+    # 1. Globale und Profil-spezifische Module
+    ../../modules/core
     ../../modules/profiles/laptop.nix
     ../../modules/desktop/niri.nix
+    
+    # 2. Hardware-Features (Neu: Unser abstrahiertes Btrfs-Modul)
+    ../../modules/hardware/btrfs-rollback.nix
 
+    # 3. Host-spezifische Hardwaredaten
     ./disko.nix
     ./hardware-configuration.nix
   ];
 
-  # General
+  # ===========================================================================
+  # BASIS-KONFIGURATION
+  # ===========================================================================
   mainUser = "haku";
   networking.hostName = "thinkpad";
 
-  # Filesystems
-  boot.supportedFilesystems = [ "btrfs" ];
-
-  # laptop optimisation
+  # Nix-Settings (Nur Thinkpad-spezifische Overrides. GC und Optimise-Store kommen aus common/core.nix)
   nix.settings = {
     max-jobs = 2;
     cores = 2;
-    auto-optimise-store = true;
   };
-
+  
+  # ===========================================================================
+  # DATEISYSTEME & PERSISTENZ
+  # ===========================================================================
+  boot.supportedFilesystems = [ "btrfs" ];
   boot.tmp.useTmpfs = false;
 
-  # Automatic garbage collector
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
+  # Aktiviert das neue Rollback-Modul
+  custom.hardware.btrfs-rollback = {
+    enable = true;
+    device = "/dev/mapper/cryptroot";
   };
 
   # ===========================================================================
-  # BTRFS ROLLBACK SCRIPT (Erase your Darlings)
-  # ===========================================================================
-  boot.initrd.systemd.enable = true;
-  boot.initrd.systemd.services.btrfs-rollback = {
-    description = "Rollback Btrfs root subvolume to a pristine state";
-    wantedBy = [ "initrd.target" ];
-    after = [ "systemd-cryptsetup@cryptroot.service" ]; # Warten bis LUKS offen ist
-    before = [ "sysroot.mount" ];
-    unitConfig.DefaultDependencies = "no";
-    serviceConfig.Type = "oneshot";
-    
-    script = ''
-      mkdir -p /btrfs_tmp
-      mount -o subvol=/ /dev/mapper/cryptroot /btrfs_tmp
-
-      if [ -d "/btrfs_tmp/root" ]; then
-          # Lösche erst alle verschachtelten Subvolumes
-          btrfs subvolume list -o /btrfs_tmp/root |
-          cut -f9 -d' ' |
-          while read subvolume; do
-              btrfs subvolume delete "/btrfs_tmp/$subvolume"
-          done &&
-          btrfs subvolume delete /btrfs_tmp/root
-      fi
-
-      btrfs subvolume create /btrfs_tmp/root
-      umount /btrfs_tmp
-    '';
-  };
-
-
-  # ===========================================================================
-  # SWAP & HIBERNATION (8 GB RAM)
+  # SWAP & HIBERNATION
   # ===========================================================================
   swapDevices = [ {
     device = "/swap/swapfile";
-    size = 8192; # 8 GB = 8192 MB
+    size = 8192; # 8 GB
   } ];
-
-  # Das Gerät, auf dem sich Btrfs und damit das Swapfile befindet (LUKS Container)
   boot.resumeDevice = "/dev/mapper/cryptroot";
-
-  # WICHTIG FÜR BTRFS HIBERNATION:
-  # Der resume_offset muss nach der Erstinstallation ermittelt und hier eingetragen werden!
   boot.kernelParams = [ "resume_offset=1099815" ];
-
-  # Home Manager
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    extraSpecialArgs = { inherit inputs; };
-    
-    users.${config.mainUser} = {
-      imports = [
-        ../../modules/home/haku.nix
-      ];
-
-      custom.niri = {
-        # Aktiviert Touchpad-Settings und die speziellen Keybinds
-        hasTouchpad = true; 
-      
-        monitorConfig = ''
-          output "eDP-1" {
-              mode "1366x768"
-              scale 0.8
-          }
-        '';
-      };
-    };
-  };
 
   system.stateVersion = "26.05";
 }
