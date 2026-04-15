@@ -61,12 +61,6 @@
     # Ghostty Terminal Emulator
     ghostty       
     
-    # Nushell wird hier nur als Paket installiert, NICHT als System-Shell gesetzt!
-    nushell
-    
-    # Moderne Rust-basierte CLI Tools
-    bat eza fd ripgrep zoxide
-
     # App-Launcher
     fuzzel
 

@@ -8,6 +8,8 @@
     # 2. Hardware-Features (Neu: Unser abstrahiertes Btrfs-Modul)
     ../../modules/hardware/btrfs-rollback.nix
 
+    ../../modules/features/cli/nushell
+
     # 3. Host-spezifische Hardwaredaten
     ./disko.nix
     ./hardware-configuration.nix
@@ -46,6 +48,11 @@
   } ];
   boot.resumeDevice = "/dev/mapper/cryptroot";
   boot.kernelParams = [ "resume_offset=1099815" ];
+
+  # ===========================================================================
+  # Features
+  # ==========================================================================
+  features.cli.nushell.enable = true;
 
   system.stateVersion = "26.05";
 }
