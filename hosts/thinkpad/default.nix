@@ -70,5 +70,6 @@
   };
   features.apps.ghostty.enable = true;
   #features.apps.neovim.enable = false;
+
   system.stateVersion = "26.05";
 }

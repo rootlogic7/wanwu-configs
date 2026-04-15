@@ -4,7 +4,7 @@
 let
   cfg = config.features.apps.ghostty;
   # Später können wir das Theme auch globaler machen
-  theme = import ../../../../modules/home/theme.nix; 
+  theme = import ../../../core/theme.nix; 
 in {
   options.features.apps.ghostty = {
     enable = lib.mkEnableOption "Ghostty Terminal Emulator";
