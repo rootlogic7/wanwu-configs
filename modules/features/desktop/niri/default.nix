@@ -69,8 +69,7 @@ in {
 
     fonts.packages = with pkgs; [ nerd-fonts.fira-code ];
 
-    environment.systemPackages = with pkgs; [
-      ghostty       
+    environment.systemPackages = with pkgs; [       
       fuzzel
       qutebrowser  
       xwayland-satellite 

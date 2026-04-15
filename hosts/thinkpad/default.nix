@@ -2,13 +2,16 @@
   imports = [
     # 1. Globale und Profil-spezifische Module
     ../../modules/core
-    ../../modules/profiles/laptop.nix    
+    ../../modules/profiles/laptop.nix
+    
     # 2. Hardware-Features (Neu: Unser abstrahiertes Btrfs-Modul)
     ../../modules/hardware/btrfs-rollback.nix
 
     # Features
     ../../modules/features/cli/nushell
     ../../modules/features/desktop/niri
+    ../../modules/features/apps/ghostty
+    #../../modules/features/apps/neovim
 
     # 3. Host-spezifische Hardwaredaten
     ./disko.nix
@@ -65,5 +68,7 @@
       }
     '';
   };
+  features.apps.ghostty.enable = true;
+  #features.apps.neovim.enable = false;
   system.stateVersion = "26.05";
 }
