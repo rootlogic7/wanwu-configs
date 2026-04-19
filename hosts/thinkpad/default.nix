@@ -1,16 +1,21 @@
-{ inputs, config, ... }: {
+{ config, pkgs, inputs, ... }: {
   imports = [
     # 1. Globale und Profil-spezifische Module
     ../../modules/core
-    ../../modules/profiles/laptop.nix
     
     # 2. Hardware-Features (Neu: Unser abstrahiertes Btrfs-Modul)
     ../../modules/hardware/btrfs-rollback.nix
 
     # Features
+    ../../modules/features/hardware/laptop
+    ../../modules/features/hardware/intel-graphics
+    ../../modules/features/hardware/bluetooth
+
     ../../modules/features/cli/nushell
     ../../modules/features/cli/llm.nix
+
     ../../modules/features/desktop/niri
+
     ../../modules/features/apps/ghostty
     #../../modules/features/apps/neovim
 
@@ -54,8 +59,17 @@
   boot.kernelParams = [ "resume_offset=1099815" ];
 
   # ===========================================================================
-  # Features
+  # KERNEL
   # ==========================================================================
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # =================================================================================
+  # FEATURES
+  # =========================================================================
+  features.hardware.laptop.enable = true;
+  features.hardware.intel-graphics.enable = true;
+  features.hardware.bluetooth.enable = true;
+
   features.cli.nushell.enable = true;
 
   # NEU: Niri aktivieren und konfigurieren (Diesen Block hast du vorher umständlich im home-manager Block definiert!)

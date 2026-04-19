@@ -1,8 +1,7 @@
-{ config, inputs, ... }: {
+{ config, pkgs, inputs, ... }: {
   imports = [
     # 1. Globale und Profil-spezifische Module
     ../../modules/core
-    ../../modules/profiles/workstation.nix
     
     # 2. Hardware-Features (Spezifisch für die Workstation)
     ../../modules/hardware/zfs-rollback.nix
@@ -45,8 +44,14 @@
   custom.hardware.nvidia.enable = true;
 
   # ===========================================================================
-  # FEATURES
+  # KERNEL
   # ===========================================================================
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  powerManagement.cpuFreqGovernor = "performance";
+
+  # =============================================================================
+  # FEATURES
+  # ============================================================================
   features.cli.nushell.enable = true;
   features.apps.ghostty.enable = true;
   features.apps.neovim.enable = true;
