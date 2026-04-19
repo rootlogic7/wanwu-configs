@@ -3,37 +3,12 @@
 
 let
   cfg = config.features.apps.neovim;
-  
-  # Wir importieren den NixCats Builder
-  nixCatsBuilder = inputs.nixCats.utils.standardPluginOverlay;
-  
-  # NixCats Definition
-  myNixCats = inputs.nixCats.packages.${pkgs.system}.nixCatsBuilder {
-    luaPath = "${./lua}";
-    
-    lspsAndRuntimeDeps = {
-      default = with pkgs; [
-        vtsls
-        lua-language-server
-        ripgrep
-        fd
-      ];
-    };
-
-    startupPlugins = {
-      default = with pkgs.vimPlugins; [
-        nvim-lspconfig
-        telescope-nvim
-        catppuccin-nvim
-      ];
-    };
-  };
 in {
   # ===========================================================================
   # OPTIONEN
   # ===========================================================================
   options.features.apps.neovim = {
-    enable = lib.mkEnableOption "Neovim IDE configured via NixCats";
+    enable = lib.mkEnableOption "Neovim IDE (via Home Manager)";
   };
 
   # ===========================================================================
@@ -41,16 +16,32 @@ in {
   # ===========================================================================
   config = lib.mkIf cfg.enable {
     
-    # SYSTEM-EBENE: Wir könnten hier systemweite Dinge definieren, falls nötig.
-    # Da Neovim meist ein reines User-Tool ist, bleibt das oft leer.
-
-    # USER-EBENE: Home Manager Konfiguration
+    # USER-EBENE: Neovim über Home Manager konfigurieren
     home-manager.users.${config.mainUser} = {
-      home.packages = [ myNixCats ];
       
-      home.sessionVariables = {
-        EDITOR = "nvim";
+      programs.neovim = {
+        enable = true;
+        defaultEditor = true; # Setzt automatisch EDITOR="nvim"
+        
+        # 1. Deine LSPs und CLI-Tools (vorher lspsAndRuntimeDeps)
+        extraPackages = with pkgs; [
+          vtsls
+          lua-language-server
+          ripgrep
+          fd
+        ];
+
+        # 2. Deine Plugins (vorher startupPlugins)
+        plugins = with pkgs.vimPlugins; [
+          nvim-lspconfig
+          telescope-nvim
+          catppuccin-nvim
+        ];
+
+        # 3. Deine Lua-Konfiguration direkt einlesen
+        extraLuaConfig = builtins.readFile ./lua/init.lua;
       };
+
     };
   };
 }

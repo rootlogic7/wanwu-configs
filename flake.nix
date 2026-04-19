@@ -36,9 +36,6 @@
           impermanence.nixosModules.impermanence
           inputs.sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
-
-          ./hosts/workstation/disko.nix
-          # ./hosts/workstation/hardware-configuration.nix
           ./hosts/workstation/default.nix
         ];
       };

@@ -10,6 +10,7 @@
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
       "/var/lib/bluetooth"
+      { directory = "/var/lib/private"; mode = "0700"; }
     ];
     
     files = [

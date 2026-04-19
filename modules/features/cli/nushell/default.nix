@@ -72,6 +72,11 @@ in {
           # Info
           bdf = "sudo btrfs filesystem df /";
           bat = "acpi -V";
+
+          # Startet Aider mit einem Coding-Modell im aktuellen Verzeichnis
+          askai = "aider --model ollama/deepseek-coder-v2:lite";
+          # Einfaches Gespräch im Terminal ohne Datei-Kontext
+          chat = "ollama run qwen2.5-coder:7b";
         };
       };
     };

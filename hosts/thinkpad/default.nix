@@ -9,6 +9,7 @@
 
     # Features
     ../../modules/features/cli/nushell
+    ../../modules/features/cli/llm.nix
     ../../modules/features/desktop/niri
     ../../modules/features/apps/ghostty
     #../../modules/features/apps/neovim
@@ -69,6 +70,7 @@
     '';
   };
   features.apps.ghostty.enable = true;
+  features.cli.llm.enable = true;
   #features.apps.neovim.enable = false;
 
   system.stateVersion = "26.05";
