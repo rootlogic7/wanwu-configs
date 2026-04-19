@@ -28,7 +28,7 @@
   # DATEISYSTEME & PERSISTENZ
   # ===========================================================================
   boot.supportedFilesystems = [ "zfs" "btrfs" ];
-  networking.hostId = "4e98920d"; # TODO: Generiere eine 8-stellige ID mit `head -c 8 /etc/machine-id`
+  networking.hostId = "eb9905ec"; # TODO: Generiere eine 8-stellige ID mit `head -c 8 /etc/machine-id`
 
   # Impermanence-Fix: Teilt dem Bootloader mit, dass /home früh gemountet werden muss
   fileSystems."/home".neededForBoot = true;
