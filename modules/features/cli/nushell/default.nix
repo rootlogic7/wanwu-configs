@@ -46,8 +46,8 @@ in {
         enable = true;
         shellAliases = {
           # System
-          nrs = "sudo nixos-rebuild switch --flake ~/wanwu-configs#thinkpad";
-          nrt = "sudo nixos-rebuild test --flake ~/wanwu-configs#thinkpad";
+          nrs = "sudo nixos-rebuild switch --flake ~/wanwu-configs;
+          nrt = "sudo nixos-rebuild test --flake ~/wanwu-configs";
           nru = "nix flake update --flake ~/wanwu-configs";
           ngc = "sudo nix-env --delete-generations old; sudo nix-collect-garbage -d";
           nopt = "nix-store --optimise";
