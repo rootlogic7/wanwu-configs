@@ -19,7 +19,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri-quickshell.url = "path:/home/haku/Dev/niri-quickshell";
+    niri-quickshell.url = "github:rootlogic7/niri-quickshell";
   };
 
   outputs = { self, nixpkgs, disko, impermanence, sops-nix, home-manager, ... }@inputs: {

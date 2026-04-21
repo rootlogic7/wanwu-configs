@@ -87,14 +87,17 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1776188545,
-        "narHash": "sha256-Mq7q3SPm/h2Q5vF1X1yE05SvmvZxOghwk5nNmxYPyt0=",
-        "path": "/home/haku/Dev/niri-quickshell",
-        "type": "path"
+        "lastModified": 1776172863,
+        "narHash": "sha256-ex4/mtfE3TENvfw3UYN8hXjPgdpnCdnwaCpAEiQE9Qs=",
+        "owner": "rootlogic7",
+        "repo": "niri-quickshell",
+        "rev": "ca25045f9bc98b0b9c34a3f5f2915d193d3d79c9",
+        "type": "github"
       },
       "original": {
-        "path": "/home/haku/Dev/niri-quickshell",
-        "type": "path"
+        "owner": "rootlogic7",
+        "repo": "niri-quickshell",
+        "type": "github"
       }
     },
     "nixpkgs": {

@@ -15,7 +15,7 @@
 
     # 4. Host-spezifische Hardwaredaten
     ./disko.nix
-    # ./hardware-configuration.nix
+    ./hardware-configuration.nix
   ];
 
   # ===========================================================================
@@ -46,7 +46,8 @@
   # ===========================================================================
   # KERNEL
   # ===========================================================================
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.zfs.forceImportAll = true;
   powerManagement.cpuFreqGovernor = "performance";
 
   # =============================================================================
